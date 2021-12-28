@@ -1,7 +1,9 @@
-const express = require('express')
-const path = require('path')
+const express = require('express');
+const path = require('path');
+const csrf = require('csurf');
+const flash = require('connect-flash');
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const Handlebars = require('handlebars');
 
@@ -10,14 +12,14 @@ const MongoStore = require('connect-mongodb-session')(session);
 const exphbs = require('express-handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 
-const homeRoutes = require('./routes/home')
-const cardRoutes = require('./routes/card')
-const addRoutes = require('./routes/add')
-const coursesRoutes = require('./routes/courses')
-const orderRoutes = require('./routes/orders')
+const homeRoutes = require('./routes/home');
+const cardRoutes = require('./routes/card');
+const addRoutes = require('./routes/add');
+const coursesRoutes = require('./routes/courses');
+const orderRoutes = require('./routes/orders');
 const authRoutes = require('./routes/auth');
 
-const User = require('./models/user');
+// const User = require('./models/user');
 
 const varMiddleWare = require('./middleware/variables');
 const userMiddleWare = require('./middleware/user');
@@ -73,6 +75,9 @@ app.use(session({
   saveUninitialized: false,
   store: store,
 }));
+
+app.use(csrf());
+app.use(flash());
 
 app.use(varMiddleWare);
 app.use(userMiddleWare);

@@ -17,7 +17,11 @@
         <td>{{title}}</td>
         <td>{{count}}</td>
         <td>
-          <button class="btn btm-small js-remove" data-id="{{_id}}">Удалить</button>
+          <button 
+              class="btn btm-small js-remove" 
+              data-id="{{_id}}"
+              data-csurf=""{{@root.csrf}}
+              >Удалить</button>
         </td>
       </tr>
       {{/each}}
@@ -27,6 +31,9 @@
   <p><strong>Цена:</strong> <span class="price">{{price}}</span></p>
 
    <form action="/orders" method="POST">
+
+    <input type="hidden" name="_csrf" value="{{csrf}}">
+
     <button type="submit" class="btn">Сделать заказ</button>
   </form>
 {{else}}
