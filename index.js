@@ -25,8 +25,6 @@ const varMiddleWare = require('./middleware/variables');
 const userMiddleWare = require('./middleware/user');
 const keys = require('./keys')
 
-// const MONGODB_URI = `mongodb+srv://new_user_test:J67pcCiyG9AhAjf@cluster0.qi9gv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-
 
 
 // const expressHandlebars = require('express-handlebars');
